@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "src"
+version = "1"
+description = "This is the Flask Server"
+authors = ["Enrique Plata"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pendulum = "^2.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
