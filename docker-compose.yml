@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+# Created by Enrique Plata
+version: '3.9'
+
+networks:
+  default:
+    driver: bridge
+    name: ${NETWORK_NAME}
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}
+
+services:
+
+  flask-server:
+    container_name: app-flask-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+      target: runner
+    image: web-app/flask-server
+    # user: ${DOCKER_USER}
+    # command: pipenv install
+    volumes:
+      - ./server:/code
+
+#  # db
+#  db:
+#    image: postgres:${POSTGRES_VERSION}
+#    container_name: db
+#    restart: on-failure
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      - POSTGRES_USER=${POSTGRES_USER}
+#      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+#      - POSTGRES_DB=${POSTGRES_DB}
+#    volumes:
+#      - ./.postgres/initdb.d:/docker-entrypoint-initdb.d/
+#    command:
+#      - postgres
+#      - "-c"
+#      - "max_connections=150"
+#
+#  # Web Server
+#  server:
+#    image: webapp:latest
+#    container_name: my_app
+#    restart: on-failure
+#    ports:
+#      - "8080:80"
+#    environment:
+#      - PORT=80
+#      - POSTGRES_USER=${POSTGRES_USER}
+#      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+#      - POSTGRES_DB=${POSTGRES_DB}
+#    depends_on:
+#      - db
