@@ -20,10 +20,13 @@ services:
       dockerfile: Dockerfile
       target: runner
     image: web-app/flask-server
-    # user: ${DOCKER_USER}
-    # command: pipenv install
+    ports:
+      - "8080:80"
+    command: poetry run python src/main.py
     volumes:
       - ./server:/code
+    environment:
+      - PORT=80
 
 #  # db
 #  db:

@@ -22,6 +22,6 @@ RUN poetry install
 
 FROM installer AS runner
 COPY src ./src
-CMD ["sleep", "1d"]
-#CMD [ "python", "./main.py" ]
-#CMD ["poetry", "run", "python" "./src/main.py"]
+#CMD ["sleep", "1d"]
+#CMD [ "python", "src/main.py" ]
+#CMD ["poetry", "run", "python" "src/main.py"]
